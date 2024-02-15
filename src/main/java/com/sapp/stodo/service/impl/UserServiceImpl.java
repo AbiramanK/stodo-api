@@ -6,10 +6,14 @@ import com.sapp.stodo.exception.ResourceNotFoundException;
 import com.sapp.stodo.mapper.UserMapper;
 import com.sapp.stodo.repository.UserRepository;
 import com.sapp.stodo.service.UserService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
