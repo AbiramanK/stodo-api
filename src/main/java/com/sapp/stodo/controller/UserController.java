@@ -1,7 +1,9 @@
 package com.sapp.stodo.controller;
 
 import com.sapp.stodo.dto.UserDto;
+import com.sapp.stodo.dto.UserTodoMappingDto;
 import com.sapp.stodo.service.UserService;
+import com.sapp.stodo.service.UserTodoMappingService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/user")
 public class UserController {
     private UserService userService;
+    private UserTodoMappingService userTodoMappingService;
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
@@ -44,5 +47,11 @@ public class UserController {
         userService.deleteUser(userId);
 
         return ResponseEntity.ok("User deleted successfully.");
+    }
+
+    @GetMapping("/{id}/todo")
+    public ResponseEntity<List<UserTodoMappingDto>> getUserTodos(@PathVariable("id") Long userId) {
+        List<UserTodoMappingDto> todos = userTodoMappingService.getUserTodos(userId);
+        return ResponseEntity.ok(todos);
     }
 }
