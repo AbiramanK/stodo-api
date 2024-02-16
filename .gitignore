@@ -38,3 +38,7 @@ out/
 
 ### Logs ###
 *.log
+*.log.*.gz
+
+### Environment ###
+application-*.properties
