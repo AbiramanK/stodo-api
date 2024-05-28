@@ -4,6 +4,7 @@ import com.sapp.stodo.dto.UserDto;
 import com.sapp.stodo.dto.UserTodoMappingDto;
 import com.sapp.stodo.service.UserService;
 import com.sapp.stodo.service.UserTodoMappingService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class UserController {
     private UserTodoMappingService userTodoMappingService;
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
         UserDto savedUser = userService.createUser(userDto);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }

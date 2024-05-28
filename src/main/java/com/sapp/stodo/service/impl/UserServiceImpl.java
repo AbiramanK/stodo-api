@@ -54,6 +54,13 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findUserById(Long userId) {
-      return  userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User is not exists with given id: " + userId));
+        return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User is not exists with given id: " + userId));
+    }
+
+    @Override
+    public UserDto findUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        return UserMapper.mapToUserDto(user);
+//                stream().findFirst().orElseThrow(() -> new ResourceNotFoundException("User is not exists with given email: " + email));
     }
 }
